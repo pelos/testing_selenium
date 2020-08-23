@@ -1,0 +1,12 @@
+{
+    "development":[
+        "pos-1.py",
+        "pos-2.py"
+    ],
+    "stage":[
+        "pos-2.py",
+        "pos-3.py",
+        "pos-4.py"
+    ]   
+
+}
