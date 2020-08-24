@@ -9,7 +9,8 @@ tt = "{0} \nTests:\n".format(datetime.now())
 test_to_execute = []
 folder = "tests_to_run"
 parent = os.path.dirname(__file__)
-json_file = os.path.join(parent, folder, "test_organization.jsonc")
+test_folder = os.path.join(parent, folder)
+json_file = os.path.join(test_folder, "test_organization.jsonc")
 print("json_file exists: {0}".format(os.path.isfile(json_file)))
 
 try:
@@ -33,7 +34,7 @@ print("-----------------------------")
 logger_file = open("logger_file.log", "w+")
 for i in test_to_execute:
     tt = tt + i + "\n"
-    path_to_file = os.path.join(folder, i)
+    path_to_file = os.path.join(test_folder, i)
     print("Test file: {0}  exists: {1}".format(path_to_file, os.path.isfile(path_to_file)))
     p1 = subprocess.Popen(["pytest", path_to_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     out, err = p1.communicate()
