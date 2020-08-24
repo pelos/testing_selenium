@@ -1,4 +1,3 @@
-import argparse
 import subprocess
 import os
 import json
@@ -7,9 +6,6 @@ from datetime import datetime
 os.environ['test_case'] = 'stage'
 
 tt = "{0} \nTests:\n".format(datetime.now())
-# parser = argparse.ArgumentParser()
-# parser.add_argument("test")
-# args = parser.parse_args()
 
 test_to_execute = []
 folder = "tests_to_run"
@@ -17,22 +13,23 @@ try:
     with open("tests_to_run/test_organization.jsonc") as f:
         data = json.load(f)
         data[os.environ["test_case"]]
-        print(data)
         case = data[os.environ["test_case"]]
         test_to_execute = case
 except Exception as e:
     test_to_execute.append(os.environ["test_case"])
 
-print("Test selection to_execute:")
+
+print("Test from '{0}' to_execute:".format(os.environ["test_case"]))
 print(test_to_execute)
+print("-----------------------------")
+
 
 
 logger_file = open("logger_file.log", "w+")
 for i in test_to_execute:
     tt = tt + i + "\n"
     pathh = os.path.join(folder, i)
-    print(pathh)
-    print(os.path.isfile(pathh))
+    print("Test file: {0}  exists: {1}".format(pathh, os.path.isfile(pathh)))
     p1 = subprocess.Popen(["pytest", os.path.join(folder, i)], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p1.communicate()
     logger_file.write(out.decode())
