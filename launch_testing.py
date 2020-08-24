@@ -23,7 +23,7 @@ try:
 except Exception as e:
     test_to_execute.append(os.environ["test_case"])
 
-print("Test selection to_execute")
+print("Test selection to_execute:")
 print(test_to_execute)
 
 
@@ -31,6 +31,8 @@ logger_file = open("logger_file.log", "w+")
 for i in test_to_execute:
     tt = tt + i + "\n"
     pathh = os.path.join(folder, i)
+    print(pathh)
+    print(os.path.isfile(pathh))
     p1 = subprocess.Popen(["pytest", os.path.join(folder, i)], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p1.communicate()
     logger_file.write(out.decode())
@@ -41,8 +43,6 @@ logger_file.close()
 JIRA_SERVER = os.environ["jira_server"]
 USER = os.environ['user']
 TOKEN = os.environ['token']
-
-print(JIRA_SERVER, USER, TOKEN)
 
 jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN))
 issue = jira.issue("TES-9")
