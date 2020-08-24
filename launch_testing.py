@@ -39,8 +39,8 @@ for i in test_to_execute:
 logger_file.close()
 
 JIRA_SERVER = "https://dkg1.atlassian.net"
-USER = "Demiank100@gmail.com"
-TOKEN = "bwOvpsN2klzXOan3O3f8363B"
+USER = os.environ['user']
+TOKEN = os.environ['token']
 jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN) )
 issue = jira.issue("TES-9")
 print("this is the issue: {0}  issue_id:".format(issue, issue.id))
