@@ -5,7 +5,7 @@ import json
 from jira import JIRA
 
 os.environ['test_case'] = 'stage'
-
+tt = "Tests:\n"
 # parser = argparse.ArgumentParser()
 # parser.add_argument("test")
 # args = parser.parse_args()
@@ -27,6 +27,7 @@ print(test_to_execute)
 
 logger_file = open("logger_file.log", "w+")
 for i in test_to_execute:
+    tt = tt + i + "\n"
     pathh = os.path.join(folder, i)
     p1 = subprocess.Popen(["pytest", os.path.join(folder, i)], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p1.communicate()
@@ -43,7 +44,8 @@ issue = jira.issue("TES-9")
 print("this is the issue: {0}".format(issue))
 print(issue.id)
 logger_file = open("logger_file.log", "r")
-tt = ""
+
+tt = tt + "Results:\n"
 file_lines = logger_file.readlines()
 for i in file_lines:
     if i != "\n":
