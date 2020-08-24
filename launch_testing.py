@@ -23,6 +23,7 @@ try:
 except Exception as e:
     test_to_execute.append(os.environ["test_case"])
 
+print("Test selection to_execute")
 print(test_to_execute)
 
 
@@ -42,15 +43,16 @@ USER = "Demiank100@gmail.com"
 TOKEN = "bwOvpsN2klzXOan3O3f8363B"
 jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN) )
 issue = jira.issue("TES-9")
-print("this is the issue: {0}".format(issue))
-print(issue.id)
+print("this is the issue: {0}  issue_id:".format(issue, issue.id))
+
 logger_file = open("logger_file.log", "r")
 
 tt = tt + "Results:\n"
 file_lines = logger_file.readlines()
 for i in file_lines:
     if i != "\n":
+        print(i)
         tt = tt + i
-print(file_lines)
+# print(file_lines)
 comment = jira.add_comment(issue, tt)
 logger_file.close()
