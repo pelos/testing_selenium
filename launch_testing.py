@@ -38,7 +38,7 @@ for i in test_to_execute:
     p1.stdout.close()
 logger_file.close()
 
-JIRA_SERVER = "https://dkg1.atlassian.net"
+JIRA_SERVER = os.environ["jira_server"]
 USER = os.environ['user']
 TOKEN = os.environ['token']
 jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN) )
