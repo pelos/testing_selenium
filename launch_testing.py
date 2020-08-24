@@ -19,6 +19,8 @@ try:
         case = data[os.environ["test_case"]]
         test_to_execute = case
 except:
+    print("we didnt find that test_case set")
+    print("we are going to use {0}".format(os.environ["test_case"]))
     test_to_execute.append(os.environ["test_case"])
 
 
