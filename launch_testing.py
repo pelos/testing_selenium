@@ -3,9 +3,10 @@ import subprocess
 import os
 import json
 from jira import JIRA
-
+from datetime import datetime
 os.environ['test_case'] = 'stage'
-tt = "Tests:\n"
+
+tt = "{0} \nTests:\n".format(datetime.now())
 # parser = argparse.ArgumentParser()
 # parser.add_argument("test")
 # args = parser.parse_args()
