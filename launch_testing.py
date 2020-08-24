@@ -41,7 +41,10 @@ logger_file.close()
 JIRA_SERVER = os.environ["jira_server"]
 USER = os.environ['user']
 TOKEN = os.environ['token']
-jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN) )
+
+print(JIRA_SERVER, USER, TOKEN)
+
+jira = JIRA(server=JIRA_SERVER, basic_auth=(USER, TOKEN))
 issue = jira.issue("TES-9")
 print("this is the issue: {0}  issue_id:".format(issue, issue.id))
 
