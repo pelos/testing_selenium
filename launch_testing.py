@@ -32,11 +32,16 @@ for i in test_to_execute:
     print("Test file: {0}  exists: {1}".format(pathh, os.path.isfile(pathh)))
     p1 = subprocess.Popen(["pytest", os.path.join(folder, i)], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p1.communicate()
+    print(out.decode())
+    print(err.decode())
     logger_file.write(out.decode())
     logger_file.write(err.decode())
     p1.stdout.close()
 logger_file.close()
 
+
+import sys
+sys.exit()
 JIRA_SERVER = os.environ["jira_server"]
 USER = os.environ['user']
 TOKEN = os.environ['token']
@@ -51,7 +56,7 @@ tt = tt + "Results:\n"
 file_lines = logger_file.readlines()
 for i in file_lines:
     if i != "\n":
-        print(i)
+        # print(i)
         tt = tt + i
 # print(file_lines)
 comment = jira.add_comment(issue, tt)
