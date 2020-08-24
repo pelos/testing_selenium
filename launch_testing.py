@@ -8,8 +8,12 @@ tt = "{0} \nTests:\n".format(datetime.now())
 
 test_to_execute = []
 folder = "tests_to_run"
+parent = os.path.dirname(__file__)
+json_file = os.path.join(parent, folder, "test_organization.jsonc")
+print("json_file exists: {0}".format(os.path.isfile(json_file)))
+
 try:
-    with open("tests_to_run/test_organization.jsonc") as f:
+    with open(json_file) as f:
         data = json.load(f)
         data[os.environ["test_case"]]
         case = data[os.environ["test_case"]]
